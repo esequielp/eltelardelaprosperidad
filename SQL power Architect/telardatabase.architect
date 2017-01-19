@@ -6204,92 +6204,95 @@
     <column id="COL1770" populated="true" UUID="e0483a65-a81a-486b-8ad6-5f76189e308d" autoIncrement="false" autoIncrementSequenceName="usuarios_idciudad_seq" defaultValue="" name="idciudad" nullable="1" physicalName="idciudad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
+    <column id="COL1771" populated="true" UUID="acb07662-f995-424b-95bd-e3cc9d1849b0" autoIncrement="false" autoIncrementSequenceName="usuarios_idpais_seq" defaultValue="" name="idpais" nullable="0" physicalName="idpais" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
     </folder>
     <folder id="FOLTAB17643" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
     <folder id="FOLTAB17642" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB17644" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX1771" populated="true" UUID="4ac48666-ea36-4ec2-b139-66426a8996b9" clustered="false" name="idusuarios_pk" physicalName="idusuarios_pk" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC1772" populated="true" UUID="4c37ae9e-e11b-46a2-bc41-0f02e0ff46c4" ascendingOrDescending="UNSPECIFIED" column-ref="COL1765" name="idusuario" physicalName="idusuario" />
+    <index id="IDX1772" populated="true" UUID="4ac48666-ea36-4ec2-b139-66426a8996b9" clustered="false" name="idusuarios_pk" physicalName="idusuarios_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC1773" populated="true" UUID="4c37ae9e-e11b-46a2-bc41-0f02e0ff46c4" ascendingOrDescending="UNSPECIFIED" column-ref="COL1765" name="idusuario" physicalName="idusuario" />
     </index>
    </folder>
   </table>
-  <table id="TAB1773" populated="true" UUID="d46cfd0a-9987-4128-9082-5dd94ed3cc57" name="ciudades" objectType="TABLE" physicalName="ciudades" >
+  <table id="TAB1774" populated="true" UUID="d46cfd0a-9987-4128-9082-5dd94ed3cc57" name="ciudades" objectType="TABLE" physicalName="ciudades" >
    <remarks></remarks>
-   <folder id="FOLTAB17731" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL1774" populated="true" UUID="98954fb1-4d6e-4d6a-b0e9-328b877476e9" autoIncrement="true" defaultValue="" name="id_ciudad" nullable="0" physicalName="id_ciudad" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1719" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+   <folder id="FOLTAB17741" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL1775" populated="true" UUID="98954fb1-4d6e-4d6a-b0e9-328b877476e9" autoIncrement="true" defaultValue="" name="id_ciudad" nullable="0" physicalName="id_ciudad" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1719" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL1775" populated="true" UUID="36b52ec9-d65f-476d-8af0-8c98eebcc4b0" autoIncrement="false" defaultValue="" name="id_estado" nullable="0" physicalName="id_estado" precision="0" referenceCount="2" scale="0" source-column-ref="COL1720" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL1776" populated="true" UUID="36b52ec9-d65f-476d-8af0-8c98eebcc4b0" autoIncrement="false" defaultValue="" name="id_estado" nullable="0" physicalName="id_estado" precision="0" referenceCount="2" scale="0" source-column-ref="COL1720" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL1776" populated="true" UUID="5384cc9f-0b57-4a2d-93d0-8d168a999d94" autoIncrement="false" defaultValue="" name="ciudad" nullable="0" physicalName="ciudad" precision="200" referenceCount="1" scale="0" source-column-ref="COL1721" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL1777" populated="true" UUID="5384cc9f-0b57-4a2d-93d0-8d168a999d94" autoIncrement="false" defaultValue="" name="ciudad" nullable="0" physicalName="ciudad" precision="200" referenceCount="1" scale="0" source-column-ref="COL1721" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL1777" populated="true" UUID="5ead40ce-ab74-45da-9952-ea5e33f67c23" autoIncrement="false" defaultValue="0" name="capital" nullable="0" physicalName="capital" precision="0" referenceCount="1" scale="0" source-column-ref="COL1722" sourceDataTypeName="BIT" type="-7" userDefinedTypeUUID="936cd049-d1df-44fc-ab05-b47cabe09060" >
+    <column id="COL1778" populated="true" UUID="5ead40ce-ab74-45da-9952-ea5e33f67c23" autoIncrement="false" defaultValue="0" name="capital" nullable="0" physicalName="capital" precision="0" referenceCount="1" scale="0" source-column-ref="COL1722" sourceDataTypeName="BIT" type="-7" userDefinedTypeUUID="936cd049-d1df-44fc-ab05-b47cabe09060" >
      <remarks></remarks>
     </column>
     </folder>
-    <folder id="FOLTAB17733" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB17743" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB17732" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB17742" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB17734" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX1778" populated="true" UUID="87006056-537d-448a-ae9e-429316052b3d" clustered="false" name="ciudades_PK" physicalName="ciudades_pk" primaryKeyIndex="true" qualifier="" unique="true" >
-     <index-column id="IDC1779" populated="true" UUID="4b7bab52-08b7-43f9-a5c2-9221902eb3a0" ascendingOrDescending="UNSPECIFIED" column-ref="COL1774" name="id_ciudad" physicalName="id_ciudad" />
+    <folder id="FOLTAB17744" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX1779" populated="true" UUID="87006056-537d-448a-ae9e-429316052b3d" clustered="false" name="ciudades_PK" physicalName="ciudades_pk" primaryKeyIndex="true" qualifier="" unique="true" >
+     <index-column id="IDC1780" populated="true" UUID="4b7bab52-08b7-43f9-a5c2-9221902eb3a0" ascendingOrDescending="UNSPECIFIED" column-ref="COL1775" name="id_ciudad" physicalName="id_ciudad" />
     </index>
-    <index id="IDX1780" populated="true" UUID="9bc9fc7e-5d55-4484-8cfd-23b0e7eff998" clustered="false" index-type="BTREE" name="id_estado" physicalName="id_estado" primaryKeyIndex="false" qualifier="" unique="false" >
-     <index-column id="IDC1781" populated="true" UUID="33e44683-fc0f-4950-8652-846ffd4409c6" ascendingOrDescending="ASCENDING" column-ref="COL1775" name="id_estado" physicalName="id_estado" />
-    </index>
-   </folder>
-  </table>
-  <table id="TAB1782" populated="true" UUID="a1b17ed6-82d1-4e5c-9709-8eff730f501d" name="pais" objectType="TABLE" physicalName="pais" >
-   <remarks></remarks>
-   <folder id="FOLTAB17821" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL1783" populated="true" UUID="956b425f-1792-4c02-9150-0c167581e865" autoIncrement="true" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1736" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
-     <remarks></remarks>
-    </column>
-    <column id="COL1784" populated="true" UUID="fef5793f-7c34-4eeb-9ebd-c9a721f885ca" autoIncrement="false" defaultValue="" name="paisnombre" nullable="0" physicalName="paisnombre" precision="250" referenceCount="1" scale="0" source-column-ref="COL1737" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
-     <remarks></remarks>
-    </column>
-    </folder>
-    <folder id="FOLTAB17823" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
-    </folder>
-    <folder id="FOLTAB17822" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
-    </folder>
-    <folder id="FOLTAB17824" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX1785" populated="true" UUID="b61a774e-92c0-4fd4-bc45-1f1d4bcb87fb" clustered="false" name="pais_PK" physicalName="pais_pk" primaryKeyIndex="true" qualifier="" unique="true" >
-     <index-column id="IDC1786" populated="true" UUID="40ab08f2-0e9b-44e7-bc4a-4e71201132d4" ascendingOrDescending="UNSPECIFIED" column-ref="COL1783" name="id" physicalName="id" />
+    <index id="IDX1781" populated="true" UUID="9bc9fc7e-5d55-4484-8cfd-23b0e7eff998" clustered="false" index-type="BTREE" name="id_estado" physicalName="id_estado" primaryKeyIndex="false" qualifier="" unique="false" >
+     <index-column id="IDC1782" populated="true" UUID="33e44683-fc0f-4950-8652-846ffd4409c6" ascendingOrDescending="ASCENDING" column-ref="COL1776" name="id_estado" physicalName="id_estado" />
     </index>
    </folder>
   </table>
-  <table id="TAB1787" populated="true" UUID="8209097f-fc8b-41da-8bf9-bc7f616576be" name="estados" objectType="TABLE" physicalName="estados" >
+  <table id="TAB1783" populated="true" UUID="a1b17ed6-82d1-4e5c-9709-8eff730f501d" name="pais" objectType="TABLE" physicalName="pais" >
    <remarks></remarks>
-   <folder id="FOLTAB17871" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL1788" populated="true" UUID="a7eac684-8b74-4c83-8dd3-02e8e5872faf" autoIncrement="true" defaultValue="" name="id_estado" nullable="0" physicalName="id_estado" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1728" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+   <folder id="FOLTAB17831" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL1784" populated="true" UUID="956b425f-1792-4c02-9150-0c167581e865" autoIncrement="true" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1736" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL1789" populated="true" UUID="beff2c2a-a59e-4527-bf5e-843bb9c0b1a4" autoIncrement="false" defaultValue="" name="estado" nullable="0" physicalName="estado" precision="250" referenceCount="1" scale="0" source-column-ref="COL1729" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
-     <remarks></remarks>
-    </column>
-    <column id="COL1790" populated="true" UUID="20fd3522-0115-42f7-9b2f-77417f3437f1" autoIncrement="false" defaultValue="" name="iso_3166-2" nullable="0" physicalName="iso_" precision="4" referenceCount="1" scale="0" source-column-ref="COL1730" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL1785" populated="true" UUID="fef5793f-7c34-4eeb-9ebd-c9a721f885ca" autoIncrement="false" defaultValue="" name="paisnombre" nullable="0" physicalName="paisnombre" precision="250" referenceCount="1" scale="0" source-column-ref="COL1737" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
-    <folder id="FOLTAB17873" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB17833" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB17872" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB17832" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB17874" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX1791" populated="true" UUID="bbf3120a-8939-4263-97d4-df4fd0eefed9" clustered="false" name="estados_PK" physicalName="estados_pk" primaryKeyIndex="true" qualifier="" unique="true" >
-     <index-column id="IDC1792" populated="true" UUID="b28bf301-b74d-4a23-a772-7496ed95002d" ascendingOrDescending="UNSPECIFIED" column-ref="COL1788" name="id_estado" physicalName="id_estado" />
+    <folder id="FOLTAB17834" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX1786" populated="true" UUID="b61a774e-92c0-4fd4-bc45-1f1d4bcb87fb" clustered="false" name="pais_PK" physicalName="pais_pk" primaryKeyIndex="true" qualifier="" unique="true" >
+     <index-column id="IDC1787" populated="true" UUID="40ab08f2-0e9b-44e7-bc4a-4e71201132d4" ascendingOrDescending="UNSPECIFIED" column-ref="COL1784" name="id" physicalName="id" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB1788" populated="true" UUID="8209097f-fc8b-41da-8bf9-bc7f616576be" name="estados" objectType="TABLE" physicalName="estados" >
+   <remarks></remarks>
+   <folder id="FOLTAB17881" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL1789" populated="true" UUID="a7eac684-8b74-4c83-8dd3-02e8e5872faf" autoIncrement="true" defaultValue="" name="id_estado" nullable="0" physicalName="id_estado" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL1728" sourceDataTypeName="INT" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL1790" populated="true" UUID="beff2c2a-a59e-4527-bf5e-843bb9c0b1a4" autoIncrement="false" defaultValue="" name="estado" nullable="0" physicalName="estado" precision="250" referenceCount="1" scale="0" source-column-ref="COL1729" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL1791" populated="true" UUID="20fd3522-0115-42f7-9b2f-77417f3437f1" autoIncrement="false" defaultValue="" name="iso_3166-2" nullable="0" physicalName="iso_" precision="4" referenceCount="1" scale="0" source-column-ref="COL1730" sourceDataTypeName="VARCHAR" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB17883" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB17882" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB17884" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX1792" populated="true" UUID="bbf3120a-8939-4263-97d4-df4fd0eefed9" clustered="false" name="estados_PK" physicalName="estados_pk" primaryKeyIndex="true" qualifier="" unique="true" >
+     <index-column id="IDC1793" populated="true" UUID="b28bf301-b74d-4a23-a772-7496ed95002d" ascendingOrDescending="UNSPECIFIED" column-ref="COL1789" name="id_estado" physicalName="id_estado" />
     </index>
    </folder>
   </table>
   <relationships>
-   <relationship id="REL1793" populated="true" UUID="91fb989f-c1cd-4e97-bf0d-3164c161a1bc" deferrability="7" deleteRule="0" fk-table-ref="TAB1773" fkCardinality="7" identifying="false" name="ciudades_ibfk_1" physicalName="ciudades_ibfk_1" pk-table-ref="TAB1787" pkCardinality="2" updateRule="0" >
-    <column-mapping id="CMP1794" populated="true" UUID="acce5f4f-7d46-48aa-a04a-ef028f44f7c7" fk-column-ref="COL1775" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL1788" />
+   <relationship id="REL1794" populated="true" UUID="91fb989f-c1cd-4e97-bf0d-3164c161a1bc" deferrability="7" deleteRule="0" fk-table-ref="TAB1774" fkCardinality="7" identifying="false" name="ciudades_ibfk_1" physicalName="ciudades_ibfk_1" pk-table-ref="TAB1788" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP1795" populated="true" UUID="acce5f4f-7d46-48aa-a04a-ef028f44f7c7" fk-column-ref="COL1776" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL1789" />
    </relationship>
   </relationships>
  </target-database>
@@ -6302,11 +6305,11 @@
  </compare-dm-settings>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
-  <table-pane table-ref="TAB1764" x="96" y="79" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB1773" x="517" y="132" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB1782" x="519" y="57" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB1787" x="520" y="255" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL1793" pkConnection="0.45108695652173914" fkConnection="0.5478723404255319" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-pane table-ref="TAB1764" x="96" y="79" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB1774" x="548" y="146" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB1783" x="519" y="57" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB1788" x="527" y="318" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL1794" pkConnection="0.45108695652173914" fkConnection="0.5478723404255319" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">
