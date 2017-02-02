@@ -23,4 +23,5 @@ From
     On telar.idadmin = usuarios1.idusuario
 Order By
   telar.nombreTelar,
-  telarusuario.posicion
+  telarusuario.posicion,
+  telar.idtelar

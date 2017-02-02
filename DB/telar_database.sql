@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.6.17 : Database - telarp
+SQLyog Ultimate v11.11 (32 bit)
+MySQL - 5.7.11 : Database - telarp
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.6.17 : Database - telarp
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`telarp` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`telarp` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 USE `telarp`;
 
@@ -61,8 +61,8 @@ CREATE TABLE `cuentabancaria` (
   PRIMARY KEY (`idcuentabancaria`),
   KEY `idusuario` (`idusuario`),
   KEY `idbanco` (`idbanco`),
-  CONSTRAINT `cuentabancaria_ibfk_2` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`),
-  CONSTRAINT `cuentabancaria_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
+  CONSTRAINT `cuentabancaria_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`),
+  CONSTRAINT `cuentabancaria_ibfk_2` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cuentabancaria` */
@@ -127,18 +127,22 @@ CREATE TABLE `pagos` (
   `aprobado` tinyint(1) DEFAULT NULL,
   `numeroRef` varchar(20) DEFAULT NULL,
   `fechaPago` date DEFAULT NULL,
+  `idUsuarioPago` bigint(20) DEFAULT NULL,
+  `comprobantepago` blob,
   PRIMARY KEY (`idpago`),
   KEY `idusuario` (`idusuario`),
   KEY `idtelar` (`idtelar`),
   KEY `idbanco` (`idbanco`),
+  KEY `idUsuarioPago` (`idUsuarioPago`),
   CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`),
-  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`)
+  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`),
+  CONSTRAINT `pagos_ibfk_4` FOREIGN KEY (`idUsuarioPago`) REFERENCES `usuarios` (`idusuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pagos` */
 
-insert  into `pagos`(`idpago`,`idusuario`,`idtelar`,`idbanco`,`aprobado`,`numeroRef`,`fechaPago`) values (1,1,2,2,1,'123456','2017-02-01'),(2,2,3,2,0,'222222','2017-02-01');
+insert  into `pagos`(`idpago`,`idusuario`,`idtelar`,`idbanco`,`aprobado`,`numeroRef`,`fechaPago`,`idUsuarioPago`,`comprobantepago`) values (1,1,2,2,1,'123456','2017-02-01',1,NULL),(2,2,3,2,0,'222222','2017-02-01',1,NULL);
 
 /*Table structure for table `pais` */
 
@@ -184,6 +188,7 @@ CREATE TABLE `telar` (
   `status` tinyint(1) DEFAULT NULL,
   `idadmin` bigint(20) DEFAULT NULL,
   `nivel` int(3) DEFAULT NULL,
+  `publico` int(2) DEFAULT NULL,
   PRIMARY KEY (`idtelar`),
   KEY `idadmin` (`idadmin`),
   KEY `idmonto` (`idmonto`),
@@ -193,7 +198,7 @@ CREATE TABLE `telar` (
 
 /*Data for the table `telar` */
 
-insert  into `telar`(`idtelar`,`nombreTelar`,`fechaCreado`,`idmonto`,`idtelarPadre`,`status`,`idadmin`,`nivel`) values (2,'Telar Prospedidad','2017-02-01 13:49:46',2,NULL,0,1,2),(3,'Telar Bendicion','2017-02-01 13:51:06',1,NULL,0,2,1);
+insert  into `telar`(`idtelar`,`nombreTelar`,`fechaCreado`,`idmonto`,`idtelarPadre`,`status`,`idadmin`,`nivel`,`publico`) values (2,'Telar Prospedidad','2017-02-01 13:49:46',2,NULL,0,1,2,NULL),(3,'Telar Bendicion','2017-02-01 13:51:06',1,NULL,0,2,1,NULL);
 
 /*Table structure for table `telarusuario` */
 
