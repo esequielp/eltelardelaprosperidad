@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="utf8" collation="utf8_general_ci">telarp</database>
+<database charset="latin1" collation="latin1_swedish_ci">telarp</database>
 </source>
 <canvas zoom="100">
 <tables>
@@ -17,12 +17,12 @@
   `capital` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idciudad`),
   KEY `id_estado` (`idestado`),
-  CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=523 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="pais" view="colnames">
-<left>44</left>
-<top>92</top>
+<left>27</left>
+<top>83</top>
 <width>105</width>
 <height>97</height>
 <sql_create_table>CREATE TABLE `pais` (
@@ -32,135 +32,154 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
 </table>
 <table name="usuarios" view="colnames">
-<left>196</left>
-<top>57</top>
+<left>237</left>
+<top>58</top>
 <width>164</width>
 <height>306</height>
 <sql_create_table>CREATE TABLE `usuarios` (
   `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `apellido` varchar(50) DEFAULT NULL,
   `email` varchar(250) CHARACTER SET latin1 NOT NULL,
   `password` varchar(50) CHARACTER SET latin1 NOT NULL,
   `cedula` int(12) DEFAULT NULL,
   `direccion` varchar(500) CHARACTER SET latin1 DEFAULT NULL,
   `idpais` int(11) DEFAULT NULL,
+  `idestado` int(11) DEFAULT NULL,
   `idciudad` int(11) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `sexo` tinyint(4) DEFAULT NULL,
+  `celular` text,
+  `sexo` char(1) DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
-  `fechaRegistro` datetime DEFAULT NULL,
+  `fechaRegistro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idReferido` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idusuario`),
   KEY `idciudad` (`idciudad`),
   KEY `idpais` (`idpais`),
+  KEY `idestado` (`idestado`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idciudad`) REFERENCES `ciudades` (`idciudad`),
-  CONSTRAINT `usuarios_ibfk_5` FOREIGN KEY (`idpais`) REFERENCES `pais` (`idpais`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+  CONSTRAINT `usuarios_ibfk_5` FOREIGN KEY (`idpais`) REFERENCES `pais` (`idpais`),
+  CONSTRAINT `usuarios_ibfk_6` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="banco" view="colnames">
-<left>969</left>
-<top>95</top>
+<left>858</left>
+<top>213</top>
 <width>117</width>
 <height>177</height>
 <sql_create_table>CREATE TABLE `banco` (
   `idbanco` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreBanco` varchar(150) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`idbanco`),
-  CONSTRAINT `banco_ibfk_1` FOREIGN KEY (`idbanco`) REFERENCES `cuentabancaria` (`idcuentabancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+  PRIMARY KEY (`idbanco`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="cuentaBancaria" view="colnames">
-<left>801</left>
-<top>0</top>
+<left>580</left>
+<top>261</top>
 <width>135</width>
 <height>141</height>
 <sql_create_table>CREATE TABLE `cuentabancaria` (
   `idcuentabancaria` bigint(20) NOT NULL AUTO_INCREMENT,
-  `idbanco` int(11) DEFAULT NULL,
-  `idusuario` bigint(20) DEFAULT NULL,
-  `numerocuenta` varchar(50) DEFAULT NULL,
-  `tipocuenta` varchar(20) DEFAULT NULL,
+  `idbanco` bigint(20) DEFAULT NULL COMMENT 'id banco',
+  `idusuario` bigint(20) DEFAULT NULL COMMENT 'id usuario',
+  `numerocuenta` varchar(50) DEFAULT NULL COMMENT 'Numero de Cuenta usuario',
+  `tipocuenta` varchar(20) DEFAULT NULL COMMENT 'Tipo de Cuenta',
   PRIMARY KEY (`idcuentabancaria`),
   KEY `idusuario` (`idusuario`),
+  KEY `idbanco` (`idbanco`),
+  CONSTRAINT `cuentabancaria_ibfk_2` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`),
   CONSTRAINT `cuentabancaria_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="pagos" view="colnames">
-<left>416</left>
-<top>5</top>
+<left>574</left>
+<top>40</top>
 <width>128</width>
 <height>184</height>
 <sql_create_table>CREATE TABLE `pagos` (
   `idpago` bigint(20) NOT NULL AUTO_INCREMENT,
   `idusuario` bigint(20) DEFAULT NULL,
   `idtelar` bigint(20) DEFAULT NULL,
-  `fechaPago` date DEFAULT NULL,
+  `idbanco` bigint(20) DEFAULT NULL,
   `aprobado` tinyint(1) DEFAULT NULL,
-  `idadmin` bigint(20) DEFAULT NULL,
-  `idcuentabancaria` bigint(20) DEFAULT NULL,
+  `numeroRef` varchar(20) DEFAULT NULL,
+  `fechaPago` date DEFAULT NULL,
   PRIMARY KEY (`idpago`),
-  KEY `idadmin` (`idadmin`),
   KEY `idusuario` (`idusuario`),
   KEY `idtelar` (`idtelar`),
-  KEY `idcuentabancaria` (`idcuentabancaria`),
+  KEY `idbanco` (`idbanco`),
   CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`),
-  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idcuentabancaria`) REFERENCES `cuentabancaria` (`idcuentabancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="telar" view="colnames">
-<left>635</left>
-<top>170</top>
-<width>111</width>
-<height>236</height>
+<left>568</left>
+<top>428</top>
+<width>138</width>
+<height>248</height>
 <sql_create_table>CREATE TABLE `telar` (
   `idtelar` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreTelar` varchar(200) DEFAULT NULL,
-  `fechaCreado` date DEFAULT NULL,
+  `fechaCreado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idmonto` int(11) DEFAULT NULL,
   `idtelarPadre` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `idadmin` bigint(20) DEFAULT NULL,
-  `tipo` int(3) DEFAULT NULL,
+  `nivel` int(3) DEFAULT NULL,
   PRIMARY KEY (`idtelar`),
   KEY `idadmin` (`idadmin`),
   KEY `idmonto` (`idmonto`),
   CONSTRAINT `telar_ibfk_1` FOREIGN KEY (`idadmin`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `telar_ibfk_2` FOREIGN KEY (`idmonto`) REFERENCES `montostelar` (`idmonto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="montostelar" view="colnames">
-<left>803</left>
-<top>185</top>
+<left>743</left>
+<top>539</top>
 <width>119</width>
 <height>108</height>
 <sql_create_table>CREATE TABLE `montostelar` (
   `idmonto` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmonto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="telarUsuario" view="colnames">
-<left>428</left>
-<top>211</top>
-<width>116</width>
-<height>233</height>
+<left>283</left>
+<top>415</top>
+<width>132</width>
+<height>262</height>
 <sql_create_table>CREATE TABLE `telarusuario` (
   `idtelarusuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `idtelar` bigint(20) DEFAULT NULL,
   `idusuario` bigint(20) DEFAULT NULL,
   `posicion` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
+  `nivel` int(3) DEFAULT NULL,
   `fechain` date DEFAULT NULL,
   `fechaout` date DEFAULT NULL,
   `fechanivel1` date DEFAULT NULL,
   `fechanivel2` date DEFAULT NULL,
   `fechanivel3` date DEFAULT NULL,
+  `fechanivel4` date DEFAULT NULL,
   PRIMARY KEY (`idtelarusuario`),
   KEY `idtelar` (`idtelar`),
   KEY `idusuario` (`idusuario`),
-  CONSTRAINT `telarusuario_ibfk_1` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+  CONSTRAINT `telarusuario_ibfk_1` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`),
+  CONSTRAINT `telarusuario_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="estados" view="colnames">
+<left>41</left>
+<top>431</top>
+<width>109</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `estados` (
+  `idestado` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` varchar(250) NOT NULL,
+  `iso_3166-2` varchar(4) NOT NULL,
+  PRIMARY KEY (`idestado`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
 </canvas>

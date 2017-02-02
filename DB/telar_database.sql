@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v11.11 (32 bit)
-MySQL - 5.7.11 : Database - telarp
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.6.17 : Database - telarp
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.7.11 : Database - telarp
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`telarp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`telarp` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `telarp`;
 
@@ -23,11 +23,12 @@ DROP TABLE IF EXISTS `banco`;
 CREATE TABLE `banco` (
   `idbanco` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreBanco` varchar(150) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`idbanco`),
-  CONSTRAINT `banco_ibfk_1` FOREIGN KEY (`idbanco`) REFERENCES `cuentabancaria` (`idcuentabancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idbanco`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `banco` */
+
+insert  into `banco`(`idbanco`,`nombreBanco`) values (2,'Provincial'),(3,'Mercantil'),(4,'Exterior'),(5,'Banesco'),(6,'Venezuela'),(7,'Fondo Comun'),(8,'BOD'),(9,'Tesoro'),(10,'Venezolano de Credito'),(11,'Bicentenario'),(12,'Orinoco'),(13,'100% Banco'),(14,'Banesco'),(15,'Caribe');
 
 /*Table structure for table `ciudades` */
 
@@ -40,7 +41,7 @@ CREATE TABLE `ciudades` (
   `capital` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idciudad`),
   KEY `id_estado` (`idestado`),
-  CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=523 DEFAULT CHARSET=utf8;
 
 /*Data for the table `ciudades` */
@@ -53,16 +54,20 @@ DROP TABLE IF EXISTS `cuentabancaria`;
 
 CREATE TABLE `cuentabancaria` (
   `idcuentabancaria` bigint(20) NOT NULL AUTO_INCREMENT,
-  `idbanco` int(11) DEFAULT NULL,
-  `idusuario` bigint(20) DEFAULT NULL,
-  `numerocuenta` varchar(50) DEFAULT NULL,
-  `tipocuenta` varchar(20) DEFAULT NULL,
+  `idbanco` bigint(20) DEFAULT NULL COMMENT 'id banco',
+  `idusuario` bigint(20) DEFAULT NULL COMMENT 'id usuario',
+  `numerocuenta` varchar(50) DEFAULT NULL COMMENT 'Numero de Cuenta usuario',
+  `tipocuenta` varchar(20) DEFAULT NULL COMMENT 'Tipo de Cuenta',
   PRIMARY KEY (`idcuentabancaria`),
   KEY `idusuario` (`idusuario`),
+  KEY `idbanco` (`idbanco`),
+  CONSTRAINT `cuentabancaria_ibfk_2` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`),
   CONSTRAINT `cuentabancaria_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cuentabancaria` */
+
+insert  into `cuentabancaria`(`idcuentabancaria`,`idbanco`,`idusuario`,`numerocuenta`,`tipocuenta`) values (1,2,1,'0108-0026-98-0100154872','cte'),(2,3,1,'0105-0699-96-1699072329','cte'),(3,14,1,'0134-0375-94-3751051038','cte'),(4,6,1,'0102-0284-19-0000183435','cte'),(5,4,1,'0115-0060-98-100-0957775','cte'),(6,2,2,'0108-0026-98-0100154873','cte');
 
 /*Table structure for table `estados` */
 
@@ -87,9 +92,11 @@ CREATE TABLE `montostelar` (
   `idmonto` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmonto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `montostelar` */
+
+insert  into `montostelar`(`idmonto`,`cantidad`) values (1,5000),(2,10000),(3,15000),(4,20000),(5,30000),(6,40000),(7,50000),(8,100000);
 
 /*Table structure for table `municipios` */
 
@@ -116,21 +123,22 @@ CREATE TABLE `pagos` (
   `idpago` bigint(20) NOT NULL AUTO_INCREMENT,
   `idusuario` bigint(20) DEFAULT NULL,
   `idtelar` bigint(20) DEFAULT NULL,
-  `fechaPago` date DEFAULT NULL,
+  `idbanco` bigint(20) DEFAULT NULL,
   `aprobado` tinyint(1) DEFAULT NULL,
-  `idadmin` bigint(20) DEFAULT NULL,
-  `idcuentabancaria` bigint(20) DEFAULT NULL,
+  `numeroRef` varchar(20) DEFAULT NULL,
+  `fechaPago` date DEFAULT NULL,
   PRIMARY KEY (`idpago`),
-  KEY `idadmin` (`idadmin`),
   KEY `idusuario` (`idusuario`),
   KEY `idtelar` (`idtelar`),
-  KEY `idcuentabancaria` (`idcuentabancaria`),
+  KEY `idbanco` (`idbanco`),
   CONSTRAINT `pagos_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `pagos_ibfk_2` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`),
-  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idcuentabancaria`) REFERENCES `cuentabancaria` (`idcuentabancaria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `pagos_ibfk_3` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pagos` */
+
+insert  into `pagos`(`idpago`,`idusuario`,`idtelar`,`idbanco`,`aprobado`,`numeroRef`,`fechaPago`) values (1,1,2,2,1,'123456','2017-02-01'),(2,2,3,2,0,'222222','2017-02-01');
 
 /*Table structure for table `pais` */
 
@@ -170,20 +178,22 @@ DROP TABLE IF EXISTS `telar`;
 CREATE TABLE `telar` (
   `idtelar` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreTelar` varchar(200) DEFAULT NULL,
-  `fechaCreado` date DEFAULT NULL,
+  `fechaCreado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idmonto` int(11) DEFAULT NULL,
   `idtelarPadre` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `idadmin` bigint(20) DEFAULT NULL,
-  `tipo` int(3) DEFAULT NULL,
+  `nivel` int(3) DEFAULT NULL,
   PRIMARY KEY (`idtelar`),
   KEY `idadmin` (`idadmin`),
   KEY `idmonto` (`idmonto`),
   CONSTRAINT `telar_ibfk_1` FOREIGN KEY (`idadmin`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `telar_ibfk_2` FOREIGN KEY (`idmonto`) REFERENCES `montostelar` (`idmonto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `telar` */
+
+insert  into `telar`(`idtelar`,`nombreTelar`,`fechaCreado`,`idmonto`,`idtelarPadre`,`status`,`idadmin`,`nivel`) values (2,'Telar Prospedidad','2017-02-01 13:49:46',2,NULL,0,1,2),(3,'Telar Bendicion','2017-02-01 13:51:06',1,NULL,0,2,1);
 
 /*Table structure for table `telarusuario` */
 
@@ -195,18 +205,23 @@ CREATE TABLE `telarusuario` (
   `idusuario` bigint(20) DEFAULT NULL,
   `posicion` int(11) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
+  `nivel` int(3) DEFAULT NULL,
   `fechain` date DEFAULT NULL,
   `fechaout` date DEFAULT NULL,
   `fechanivel1` date DEFAULT NULL,
   `fechanivel2` date DEFAULT NULL,
   `fechanivel3` date DEFAULT NULL,
+  `fechanivel4` date DEFAULT NULL,
   PRIMARY KEY (`idtelarusuario`),
   KEY `idtelar` (`idtelar`),
   KEY `idusuario` (`idusuario`),
-  CONSTRAINT `telarusuario_ibfk_1` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `telarusuario_ibfk_1` FOREIGN KEY (`idtelar`) REFERENCES `telar` (`idtelar`),
+  CONSTRAINT `telarusuario_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 /*Data for the table `telarusuario` */
+
+insert  into `telarusuario`(`idtelarusuario`,`idtelar`,`idusuario`,`posicion`,`estado`,`nivel`,`fechain`,`fechaout`,`fechanivel1`,`fechanivel2`,`fechanivel3`,`fechanivel4`) values (1,2,1,1,1,1,'2017-02-01',NULL,'2017-02-01',NULL,NULL,NULL),(2,2,3,2,1,2,'2017-02-02',NULL,NULL,'2017-02-02',NULL,NULL),(3,2,4,3,1,2,'2017-02-02',NULL,NULL,'2017-02-02',NULL,NULL),(4,3,2,1,1,1,'2017-02-01',NULL,'2017-02-01',NULL,NULL,NULL),(5,3,5,2,1,2,'2017-02-02',NULL,NULL,'2017-02-02',NULL,NULL),(6,3,6,3,1,2,'2017-02-02',NULL,NULL,'2017-02-02',NULL,NULL),(7,2,9,4,1,3,'2017-02-03',NULL,NULL,NULL,'2017-02-03',NULL),(8,2,10,5,1,3,'2017-02-03',NULL,NULL,NULL,'2017-02-03',NULL),(9,2,11,6,1,3,'2017-02-03',NULL,NULL,NULL,'2017-02-03',NULL),(10,2,12,7,1,3,'2017-02-04',NULL,NULL,NULL,'2017-02-04',NULL),(11,2,13,8,1,4,'2017-02-04',NULL,NULL,NULL,'2017-02-03','2017-02-05'),(12,2,14,9,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(13,2,15,10,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(14,2,16,11,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(15,2,17,12,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(16,2,18,13,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(17,2,19,14,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(18,2,20,15,1,4,'2017-02-05',NULL,NULL,NULL,NULL,'2017-02-05'),(19,3,7,4,1,3,'2017-02-03',NULL,NULL,'2017-02-03',NULL,NULL),(20,3,21,5,1,3,'2017-02-03',NULL,NULL,'2017-02-03',NULL,NULL),(21,3,22,6,1,3,'2017-02-03',NULL,NULL,'2017-02-03',NULL,NULL),(22,3,23,7,1,3,'2017-02-03',NULL,NULL,'2017-02-03',NULL,NULL);
 
 /*Table structure for table `usuarios` */
 
@@ -215,25 +230,31 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `apellido` varchar(50) DEFAULT NULL,
   `email` varchar(250) CHARACTER SET latin1 NOT NULL,
   `password` varchar(50) CHARACTER SET latin1 NOT NULL,
   `cedula` int(12) DEFAULT NULL,
   `direccion` varchar(500) CHARACTER SET latin1 DEFAULT NULL,
   `idpais` int(11) DEFAULT NULL,
+  `idestado` int(11) DEFAULT NULL,
   `idciudad` int(11) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `sexo` tinyint(4) DEFAULT NULL,
+  `celular` text,
+  `sexo` char(1) DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
-  `fechaRegistro` datetime DEFAULT NULL,
+  `fechaRegistro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `idReferido` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`idusuario`),
   KEY `idciudad` (`idciudad`),
   KEY `idpais` (`idpais`),
+  KEY `idestado` (`idestado`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idciudad`) REFERENCES `ciudades` (`idciudad`),
-  CONSTRAINT `usuarios_ibfk_5` FOREIGN KEY (`idpais`) REFERENCES `pais` (`idpais`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `usuarios_ibfk_5` FOREIGN KEY (`idpais`) REFERENCES `pais` (`idpais`),
+  CONSTRAINT `usuarios_ibfk_6` FOREIGN KEY (`idestado`) REFERENCES `estados` (`idestado`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuarios` */
+
+insert  into `usuarios`(`idusuario`,`nombre`,`apellido`,`email`,`password`,`cedula`,`direccion`,`idpais`,`idestado`,`idciudad`,`celular`,`sexo`,`fechaNac`,`fechaRegistro`,`idReferido`) values (1,'Esequiel','Palacios','esequielp@gmail.com','ep14130584',14130584,'Av perimetral',95,24,149,'04145315676','M','1979-06-18','2017-02-01 13:36:21',NULL),(2,'Jesus ','Rodriguez','jrodriguez1@promoting.com.ve','123456',18000555,'La vega',95,24,149,'04145501515','M','1986-01-01','2017-02-01 13:36:21',1),(3,'Valeria','Palacios','valeria@gmail.com','123456',18836776,'Av Perimetral',95,24,149,'04269131829','F','2009-06-18','2017-02-01 19:36:06',1),(4,'Valentina','Palacios','valentina@gmail.com','123456',18130584,'Av Perimetral',95,24,149,'04168139801','F','2013-01-12','2017-02-01 19:37:31',1),(5,'Excyl','Rodriguez','excyl@gmail.com','123456',14152555,'La vega',95,24,149,'04142356325','F','1989-03-15','2017-02-01 19:41:11',2),(6,'Keiber ','Rodriguz','krodriguez@gmail.com','123456',16134565,'La vega',95,24,149,'04125263256','M','2003-06-11','2017-02-01 19:50:09',2),(7,'Humberto','Ruz','ruz.humberto@gmail.com','123456',14123456,'La urbina',95,24,149,'04242534858','M','1978-05-16','2017-02-01 19:53:33',5),(9,'Nohely','Palacios','nohelypalacios@gmail.com','123456',18836776,'El condado',95,14,100,'04269131829	','F','1988-07-16','2017-02-01 20:49:23',3),(10,'Rosa','Palacios','rpalacios@gmail.com','123456',6052499,'Av Sur Altantico',95,6,100,'04249136323','F','1956-02-08','2017-02-01 20:52:56',3),(11,'Raul','Palaciops','raulpalacios@gmail.com','123456',6064062,'Av sur Altantico',95,6,100,'04142562525','M','1956-01-25','2017-02-01 20:59:32',4),(12,'Zuri','Palacios','zuripalacios@gmail.com','123456',22456789,'Av Sur Altantico',95,6,100,'04269987755','F','1995-06-19','2017-02-01 21:03:12',4),(13,'Juana','Belisario','jbelisario@gmail.com','123456',6055455,'El Paseo',95,14,149,'04262502827','F','1955-05-11','2017-02-01 21:09:36',9),(14,'Vitor','Belisario','vbelisario@gmail.com','123456',6054222,'El paseo',95,14,149,'02392122740','F','1955-07-14','2017-02-01 21:11:17',9),(15,'Origangel','Paez','oriangelpaez@gmail.com','123456',5123456,'La pascua',95,11,208,'04265425625','F','1989-06-27','2017-02-01 21:14:20',10),(16,'Hector ','Belisario','hectorjose@gmail.com','123456',14258785,'Fuerte TIuna',95,24,149,'0412555666	','M','1977-04-15','2017-02-01 21:15:59',10),(17,'Eleazar','Palacios','eliazarp@gmail.com','123456',14258963,'San Feliz',95,6,101,'04161471425','M','1980-10-26','2017-02-01 21:17:41',11),(18,'Angela ','Palacios ','angelap@gmail.com','123456',14256215,'Unare',95,6,100,'04142225214	','F','2017-02-01','2017-02-01 21:30:11',11),(19,'Sofia','Palacios','sofiapalacios@gmail.com','123456',18888545,'San Feliz',95,6,101,'04165452525','F','2010-08-01','2017-02-01 21:35:37',12),(20,'Oscar','Palacios','oscarpalacio@gmail.com','123456',18888546,'San Feliz',95,6,101,'042412345678	','M','1986-04-25','2017-02-01 21:39:08',12),(21,'Enrique','Emperador','eemperador@gmail.com','123456',14557589,'La candelaria',95,24,149,'04261234565	','M','1983-05-05','2017-02-01 23:18:05',5),(22,'Delbert','Cedeño','dcedeño@gmail.com','123456',14526325,'23 de Enero',95,24,149,'04142562356','M','1977-11-08','2017-02-01 23:18:54',6),(23,'Keyla','Carrero','kcarrer@gmail.com','123456',198885263,'Guarenas',95,14,275,'04164562365','F','1984-06-12','2017-02-01 23:28:38',6);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
