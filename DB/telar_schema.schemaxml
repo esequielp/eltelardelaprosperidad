@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="utf8" collation="utf8_general_ci">telarp</database>
+<database charset="latin1" collation="latin1_swedish_ci">telarp</database>
 </source>
 <canvas zoom="100">
 <tables>
@@ -34,8 +34,8 @@
 <table name="usuarios" view="colnames">
 <left>257</left>
 <top>18</top>
-<width>164</width>
-<height>306</height>
+<width>171</width>
+<height>343</height>
 <sql_create_table>CREATE TABLE `usuarios` (
   `idusuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) CHARACTER SET latin1 NOT NULL,
@@ -62,21 +62,21 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="banco" view="colnames">
-<left>858</left>
-<top>213</top>
-<width>117</width>
-<height>177</height>
+<left>809</left>
+<top>138</top>
+<width>163</width>
+<height>172</height>
 <sql_create_table>CREATE TABLE `banco` (
   `idbanco` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombreBanco` varchar(150) CHARACTER SET latin1 DEFAULT NULL,
   PRIMARY KEY (`idbanco`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="cuentaBancaria" view="colnames">
-<left>580</left>
-<top>261</top>
-<width>135</width>
-<height>141</height>
+<left>577</left>
+<top>275</top>
+<width>141</width>
+<height>179</height>
 <sql_create_table>CREATE TABLE `cuentabancaria` (
   `idcuentabancaria` bigint(20) NOT NULL AUTO_INCREMENT,
   `idbanco` bigint(20) DEFAULT NULL COMMENT 'id banco',
@@ -88,13 +88,13 @@
   KEY `idbanco` (`idbanco`),
   CONSTRAINT `cuentabancaria_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`),
   CONSTRAINT `cuentabancaria_ibfk_2` FOREIGN KEY (`idbanco`) REFERENCES `banco` (`idbanco`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="pagos" view="colnames">
 <left>569</left>
 <top>8</top>
-<width>156</width>
-<height>205</height>
+<width>153</width>
+<height>239</height>
 <sql_create_table>CREATE TABLE `pagos` (
   `idpago` bigint(20) NOT NULL AUTO_INCREMENT,
   `idusuario` bigint(20) DEFAULT NULL,
@@ -117,8 +117,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="telar" view="colnames">
-<left>568</left>
-<top>428</top>
+<left>585</left>
+<top>476</top>
 <width>138</width>
 <height>248</height>
 <sql_create_table>CREATE TABLE `telar` (
@@ -139,8 +139,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="montostelar" view="colnames">
-<left>743</left>
-<top>539</top>
+<left>799</left>
+<top>533</top>
 <width>119</width>
 <height>108</height>
 <sql_create_table>CREATE TABLE `montostelar` (
@@ -152,8 +152,8 @@
 <table name="telarUsuario" view="colnames">
 <left>334</left>
 <top>376</top>
-<width>132</width>
-<height>262</height>
+<width>139</width>
+<height>308</height>
 <sql_create_table>CREATE TABLE `telarusuario` (
   `idtelarusuario` bigint(20) NOT NULL AUTO_INCREMENT,
   `idtelar` bigint(20) DEFAULT NULL,
@@ -185,6 +185,20 @@
   `iso_3166-2` varchar(4) NOT NULL,
   PRIMARY KEY (`idestado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="rating" view="colnames">
+<left>46</left>
+<top>587</top>
+<width>98</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `rating` (
+  `idrating` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idusuario` bigint(20) DEFAULT NULL,
+  `puntos` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idrating`),
+  KEY `idusuario` (`idusuario`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
 </canvas>
