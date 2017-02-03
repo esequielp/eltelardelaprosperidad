@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="latin1" collation="latin1_swedish_ci">telarp</database>
+<database charset="utf8" collation="utf8_general_ci">telarp</database>
 </source>
 <canvas zoom="100">
 <tables>
@@ -117,8 +117,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="telar" view="colnames">
-<left>585</left>
-<top>476</top>
+<left>600</left>
+<top>482</top>
 <width>138</width>
 <height>248</height>
 <sql_create_table>CREATE TABLE `telar` (
